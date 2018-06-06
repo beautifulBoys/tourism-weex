@@ -9,12 +9,12 @@ Vue.use(Router)
 module.exports = new Router({
   routes: [
     {
-      path: '/',
+      path: '/HelloWorld',
       name: 'HelloWorld',
       component: HelloWorld
     },
     {
-      path: '/dynamic',
+      path: '/',
       name: 'dynamic',
       component: dynamic
     }

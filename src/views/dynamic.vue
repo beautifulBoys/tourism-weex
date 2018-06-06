@@ -1,22 +1,13 @@
 <template>
   <div class="dynamic">
-    <li-header class="header"
-      @headerLeftEvent="configEvent(true)"
-      @headerRightEvent="configEvent"
-      :config="headerConfig"
-      :show="true"
-    ></li-header>
-    <div class="page-main">
-            <!-- <scroller
-              lock-x use-pullup use-pulldown height="100%" ref="scroller"
-              @on-pulldown-loading="refresh"
-              @on-pullup-loading="loadMore"
-              :pulldown-config="pullDC" :pullup-config="pullUC">
-              <ul>
+    <li-header class="header" :config="headerConfig"></li-header>
+    <!-- <div class="page-main"> -->
+            <!-- <scroller>
+              <list class="ul">
                 <li-dynamic-item v-for="(item, index) in list" :key="index" :data="item"></li-dynamic-item>
-              </ul>
+              </list>
             </scroller> -->
-    </div>
+    <!-- </div> -->
 
     <!-- <li-screen :status="wayStatus" @close="closeWayChioceEvent"></li-screen> -->
 
@@ -49,28 +40,16 @@
       return {
         headerConfig: {
           title: '旅游圈',
-          right: '切换'
+          left: {
+            icon: 'back',
+            clickEvent: this.leftMenuEvent
+          },
+          right: {
+            icon: 'list',
+            clickEvent: this.rightMenuEvent
+          }
         },
         wayStatus: false,
-        pullDC: {
-          content: '下拉刷新',
-          height: 60,
-          autoRefresh: false,
-          downContent: '下拉刷新',
-          upContent: '松手刷新',
-          loadingContent: '刷新中...',
-          clsPrefix: 'pulldown-'
-        },
-        pullUC: {
-          content: '上拉加载更多',
-          pullUpHeight: 120,
-          height: 60,
-          autoRefresh: false,
-          downContent: '松手加载更多',
-          upContent: '上拉加载更多',
-          loadingContent: '加载中...',
-          clsPrefix: 'pullup-'
-        },
         pageConfig: {
           num: 10,
           page: 0
@@ -81,7 +60,13 @@
     },
     methods: {
       configEvent () {
-        
+
+      },
+      rightMenuEvent (e) {
+        console.log(e)
+      },
+      leftMenuEvent (e) {
+        console.log(e)
       }
     }
   };
@@ -93,14 +78,15 @@
   height: 100%;
   display: flex;
   flex-flow: column;
+  background: green;
   .header {
     width: 100%;
     height: 50px;
   }
   .page-main {
     flex: 1;
-    overflow-y: scroll;
-    ul {
+    background: red;
+    .ul {
       padding: 0;
       margin: 0;
     }
